@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Adatea.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFFFFF"
+             xmlns:vm="clr-namespace:Adatea.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+            <Frame BackgroundColor="#3b82f6" Padding="10" CornerRadius="20" IsVisible="{Binding IsLoggedIn}" Margin="0,0,0,20">
+                <Label Text="{Binding UserDisplayName, StringFormat='Bienvenue {0} !'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+            </Frame>
+
+
+          
+
+            <Entry Placeholder="Email"
+                   FontSize="Medium"
+                   TextColor="#333333"
+                   PlaceholderColor="#888888"
+                   VerticalOptions="Start"
+                   Text="{Binding Email}"
+                   IsVisible="{Binding IsNotLoggedIn}" />
+
+            <Entry Placeholder="Mot de passe"
+                   IsPassword="True"
+                   FontSize="Medium"
+                   TextColor="#333333"
+                   PlaceholderColor="#888888"
+                   VerticalOptions="Start"
+                   Text="{Binding Password}"
+                   IsVisible="{Binding IsNotLoggedIn}" />
+
+            <Button Text="Se connecter"
+                    BackgroundColor="#3b82f6"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Command="{Binding LoginCommand}"
+                    IsVisible="{Binding IsNotLoggedIn}" />
+
+            
+            <Button Text="Se déconnecter"
+                    BackgroundColor="#d32f2f"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Command="{Binding LogoutCommand}"
+                    IsVisible="{Binding IsLoggedIn}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

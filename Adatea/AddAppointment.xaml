@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Adatea.AddAppointment"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F0F4F8"
+             Title="Ajouter un rendez-vous">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20" Margin="10">
+            <Frame BackgroundColor="#3b82f6" CornerRadius="15" HorizontalOptions="FillAndExpand" HasShadow="True">
+                <Label Text="Ajouter un rendez-vous" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            </Frame>
+            <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#FFFFFF">
+                <Entry x:Name="LocationEntry" 
+                       Placeholder="Lieu" 
+                       FontSize="16" 
+                       TextColor="#334155" 
+                       BackgroundColor="#FFFFFF" 
+                       PlaceholderColor="#9CA3AF"/>
+            </Frame>
+            <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#FFFFFF">
+                <Entry x:Name="IdClient" 
+                       Placeholder="Id du Client" 
+                       FontSize="16" 
+                       TextColor="#334155" 
+                       BackgroundColor="#FFFFFF" 
+                       PlaceholderColor="#9CA3AF"/>
+            </Frame>
+            <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#FFFFFF">
+                <DatePicker x:Name="DateEntry" 
+                            Date="{Binding DateTime.Now}" 
+                            FontSize="16" 
+                            BackgroundColor="#FFFFFF" 
+                            TextColor="#334155"/>
+            </Frame>
+            <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#FFFFFF">
+                <TimePicker x:Name="TimeEntry" 
+                            Time="{Binding DateTime.Now.TimeOfDay}" 
+                            FontSize="16" 
+                            BackgroundColor="#FFFFFF" 
+                            TextColor="#334155"/>
+            </Frame>
+            <Button Text="Ajouter" 
+                    BackgroundColor="#10B981" 
+                    TextColor="White" 
+                    CornerRadius="10" 
+                    FontAttributes="Bold" 
+                    HeightRequest="50"
+                    Clicked="OnAddButtonClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

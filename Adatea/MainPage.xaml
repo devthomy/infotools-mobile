@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Adatea.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFFFFF">
+    <StackLayout Orientation="Vertical">
+        <Frame BackgroundColor="#3b82f6" Padding="10" Margin="20">
+            <Label Text="Infotools Rendez-Vous" HorizontalOptions="Center" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
+        </Frame>
+        <CollectionView x:Name="AppointmentsList"
+                        ItemsSource="{Binding Appointments}"
+                        SelectionMode="None"
+                        VerticalOptions="FillAndExpand"
+                        Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" Padding="10" Margin="5" BorderColor="#0ea5e9" BackgroundColor="#F9F9F9" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="{Binding Location}" FontSize="Medium" TextColor="#3b82f6" FontAttributes="Bold"/>
+                            <Label Text="{Binding DateDisplay}" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="{Binding TimeDisplay}" FontSize="Small" TextColor="Gray"/>
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Button Text="Modifier"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding Path=BindingContext.ModifyAppointmentCommand, Source={x:Reference AppointmentsList}}"
+                                BackgroundColor="#3b82f6" TextColor="White"/>
+
+                                <Button Text="Supprimer"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding Path=BindingContext.DeleteAppointmentCommand, Source={x:Reference AppointmentsList}}"
+                                BackgroundColor="#f87171" TextColor="White"/>
+
+                            </StackLayout>
+                            
+                           
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame x:Name="EditAppointmentSection" IsVisible="False" Padding="10" Margin="10" CornerRadius="10" BorderColor="#0ea5e9" IsClippedToBounds="True">
+            <StackLayout Spacing="15">
+                <!-- ID Client -->
+                <Frame Margin="0,0,0,10" BackgroundColor="#f0f0f0" CornerRadius="5" Padding="2" HasShadow="False">
+                    <Entry x:Name="EditClientId" Placeholder="ID Client" Text="{Binding SelectedAppointment.ID_Client, Mode=TwoWay}"
+           FontSize="Small" BackgroundColor="Transparent"/>
+                </Frame>
+
+                <!-- Lieu -->
+                <Frame Margin="0,0,0,10" BackgroundColor="#f0f0f0" CornerRadius="5" Padding="2" HasShadow="False">
+                    <Entry x:Name="EditLocation" Placeholder="Lieu" Text="{Binding SelectedAppointment.Location, Mode=TwoWay}"
+           FontSize="Small" BackgroundColor="Transparent"/>
+                </Frame>
+
+
+                <!-- Date Rendez-vous -->
+                <DatePicker x:Name="EditDate" Date="{Binding SelectedAppointment.Date_Rdv, Mode=TwoWay}" 
+                    Margin="0,0,0,10" BackgroundColor="#f0f0f0"/>
+
+                <!-- Heure Rendez-vous -->
+                <TimePicker x:Name="EditTime" Time="{Binding SelectedAppointment.Time_Rdv, Mode=TwoWay}" 
+                    Margin="0,0,0,10" BackgroundColor="#f0f0f0"/>
+
+                <!-- Bouton Sauvegarder -->
+                <Button Text="Sauvegarder" Clicked="OnSaveClicked"
+                BackgroundColor="#4CAF50" TextColor="White" CornerRadius="5"
+                FontAttributes="Bold" Margin="0,0,0,10"/>
+
+                <!-- Bouton Fermer -->
+                <Button Text="Fermer" Clicked="OnCloseClicked"
+                BackgroundColor="#3b82f6" TextColor="White" CornerRadius="5"
+                FontAttributes="Bold"/>
+            </StackLayout>
+        </Frame>
+
+
+        <Frame BackgroundColor="#3b82f6" Padding="10" Margin="20">
+            <Label Text="© 2023 Infotools" HorizontalOptions="Center" TextColor="White"/>
+        </Frame>
+    </StackLayout>
+</ContentPage>
