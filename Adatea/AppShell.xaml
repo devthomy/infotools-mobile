@@ -4,10 +4,7 @@
        x:Class="Adatea.AppShell">
 
     <TabBar>
-        <ShellContent Title="Connexion"
-                      Icon="login_icon.png"
-                      Route="LoginPage"
-                      ContentTemplate="{DataTemplate pages:LoginPage}" />
+       
 
         <ShellContent Title="Rendez-Vous"
                       Icon="rendezvous_icon.png"
@@ -18,5 +15,10 @@
                       Icon="rendezvous_icon.png"
                       Route="MainPage"
                       ContentTemplate="{DataTemplate pages:AddAppointment}" />
+
+        <ShellContent Title="Connexion"
+                      Icon="login_icon.png"
+                      Route="LoginPage"
+                      ContentTemplate="{DataTemplate pages:LoginPage}" />
     </TabBar>
 </Shell>
